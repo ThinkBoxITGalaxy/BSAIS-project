@@ -1,0 +1,133 @@
+﻿@model Tuple<List<Courses>, List<Subjects>>
+
+<div class="page-main">
+
+    <div class="my-3 my-md-5">
+        <div class="container">
+            <div class="row row-cards">
+                <div class="col-lg-4">
+                    <form class="card" asp-controller="Home" asp-action="SubjectCourses">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h1 class="card-title">Courses</h1>
+                                    </div>
+                                    <table class="table card-table">
+                                        @{
+
+                                            foreach (Courses ld in Model.Item1)
+                                            {
+                                                <tr>
+                                                    <td>@ld.coursename</td>
+                                                      
+                                                </tr>
+                                            }
+                                        }
+                                     @* <td class="text-right">
+                                                        <button value=@ld.coursename type="submit" name="CourseName" class="btn btn-icon btn-primary"><i class="fe fe-eye"></i></button>
+                                                    </td>*@
+                                    </table>
+                                </div>
+
+                            </div>
+
+                    </form>
+                    <form  asp-controller="Home" asp-action="CastCourses">
+
+                        <div class="form-group">
+                            <div class="input-icon">
+                                <input type="text" name="id" class="form-control" placeholder="Course ID">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="coursename" class="form-control" placeholder="Course Name">
+                                <span class="input-group-append">
+                                    <input class="btn btn-primary" type="submit">
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                    </br>
+                    </br>
+                 
+                     <form  asp-controller="Home" asp-action="CastCourses">
+                         <div class="form-group">
+                            <div class="input-icon">
+                                <input type="text" name="id" class="form-control" placeholder="Subject ID">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="asdasdad" class="form-control" placeholder="Descriptive Title">
+                                <span class="input-group-append">
+                                    <input class="btn btn-primary" type="submit">
+                                </span>
+                            </div>
+                        </div>
+                          </form>
+                </div>
+               @* <form class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="my-3 my-md-5">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Card title</h3>
+                                        <div class="card-options">
+                                            <a class="btn btn-secondary btn-sm">Action 1</a>
+                                            <a class="btn btn-secondary btn-sm ml-2">Action 2</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima neque pariatur perferendis sed suscipit velit vitae voluptatem. A consequuntur, deserunt eaque error nulla temporibus!
+                                    </div>
+                                    <div class="card-footer">
+                                        This is standard card footer
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary"><i class="fe fe-plus mr-2"></i>Add</button>
+                    </div>
+                </form>*@
+            </div>
+
+            <div class="col-lg-8">
+                <form class="card" asp-controller="Home" asp-action="Profile" target="_blank">
+                    <div class="card-body">
+                        <div class="highlight">
+                            <table class="table card-table table-vcenter text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="w-1"></th>
+                                        <th class="w-1"></th>
+                                        <th><a asp-controller="Home" asp-action="SubjectCourses">Subject</a></th>
+                                        <th>Descriptive Title</th>
+                                        <th>Units</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (Subjects ld in Model.Item2)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>@ld.SubjectId</td>
+                                            <td>@ld.Description</td>
+                                            <td>@string.Format("{0:0.#}", ld.Credits)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

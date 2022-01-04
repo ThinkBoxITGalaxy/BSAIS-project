@@ -1,0 +1,284 @@
+﻿@model List<Courses>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="Content-Language" content="en" />
+    <meta name="msapplication-TileColor" content="#2d89ef">
+    <meta name="theme-color" content="#4188c9">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <!-- Generated: 2018-04-06 16:27:42 +0200 -->
+    <title>tabler.github.io - a responsive, flat and full featured admin template</title>
+    <script src="./assets/js/require.min.js"></script>
+    <script>
+        requirejs.config({
+            baseUrl: '.'
+        });
+    </script>
+    <!-- Dashboard Core -->
+    <link href="./assets/css/dashboard.css" rel="stylesheet" />
+    <script src="./assets/js/dashboard.js"></script>
+    <!-- c3.js Charts Plugin -->
+    <link href="./assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
+    <script src="./assets/plugins/charts-c3/plugin.js"></script>
+    <!-- Google Maps Plugin -->
+    <link href="./assets/plugins/maps-google/plugin.css" rel="stylesheet" />
+    <script src="./assets/plugins/maps-google/plugin.js"></script>
+    <!-- Input Mask Plugin -->
+    <script src="./assets/plugins/input-mask/plugin.js"></script>
+</head>
+<body class="">
+    <div class="page">
+        <div class="page-main">
+            <div class="header py-4">
+                <div class="container">
+                    <div class="d-flex">
+                        <a class="header-brand" href="https://www.philsca.edu.ph/">
+                            <img src="~/assets/images/browsers/philsca.svg" class="header-brand-img" alt="">Philippine State College of Aeronautics
+                        </a>
+
+                        <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                            <span class="header-toggler-icon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="my-3 my-md-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="card" asp-controller="Home" asp-action="AddStudents">
+                                <script>
+                                    require(['input-mask']);
+                                </script>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Registration Form</h3>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <label class="form-label">ID Number</label>
+                                                    <input type="number" name="idnum" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Date of birth</label>
+                                            <div class="row gutters-xs">
+                                                <div class="col-5">
+                                                    <select name="user[month]" class="form-control custom-select">
+                                                        <option value="">Month</option>
+                                                        <option value="1">January</option>
+                                                        <option value="2">February</option>
+                                                        <option value="3">March</option>
+                                                        <option value="4">April</option>
+                                                        <option value="5">May</option>
+                                                        <option value="6">June</option>
+                                                        <option value="7">July</option>
+                                                        <option value="8">August</option>
+                                                        <option value="9">September</option>
+                                                        <option value="10">October</option>
+                                                        <option value="11">November</option>
+                                                        <option value="12">December</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-3">
+                                                    <select name="user[day]" class="form-control custom-select">
+                                                        <option value="">Day</option>
+                                                        @{
+                                                            for (int i = 1; i <= 31; i++)
+                                                            {
+                                                                <option>@i</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="col-4">
+                                                    <select name="user[year]" class="form-control custom-select">
+                                                        <option value="">Year</option>
+                                                        @{
+                                                            for (int i = 1900; i < 2021; i++)
+                                                            {
+                                                                <option>@i</option>
+                                                            }
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="form-label">Gender</div>
+                                            <div class="custom-controls-stacked">
+                                                <label class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" name="gender" class="custom-control-input" name="example-inline-radios" value="M" checked>
+                                                    <span class="custom-control-label">Male</span>
+                                                </label>
+                                                <label class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" name="gender" class="custom-control-input" name="example-inline-radios" value="F">
+                                                    <span class="custom-control-label">Female</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Email-Address</label>
+                                            <input class="form-control" placeholder="your-email@domain.com" />
+                                        </div>
+                                    
+                                    </div>
+                                </div>
+
+                            <div class="card-body">
+
+                                <h3 class="card-title">Information</h3>
+                                <div class="row">
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label name="" class="form-label">Education</label>
+                                            <select name="crs" class="form-control custom-select">
+                                                <option value="">Course</option>
+                                                @foreach (var cc in Model)
+                                                {
+                                                    <option  value="@cc.id">@cc.coursename</option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-6 col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Password</label>
+                                            <input type="password" name="pw" class="form-control" placeholder="Password" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <label class="form-label">First Name</label>
+                                            <input type="text" name="fname" class="form-control" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Middle Name</label>
+                                            <input type="text" name="midname" class="form-control" placeholder="Surname">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Last Name</label>
+                                            <input type="text" name="lname" class="form-control" placeholder="Name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-sm-8 col-md-10">
+                                        <div class="form-group">
+                                            <label class="form-label">Address</label>
+                                            <input type="text" name="address" class="form-control" placeholder="Home Address">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-4 col-md-2">
+                                        <div class="form-group">
+                                            <label class="form-label">Postal Code</label>
+                                            <input type="number" class="form-control" placeholder="ZIP Code">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-0">
+                                            <label class="form-label">About Me</label>
+                                            <textarea rows="5" class="form-control" placeholder="Tell about yourself">
+
+                                                </textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="card-footer text-right">
+                                <button class="btn btn-primary">Sign Up</button>
+                            </div>
+                            </form>
+
+                        </div>
+
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#">First link</a></li>
+                                    <li><a href="#">Second link</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#">Third link</a></li>
+                                    <li><a href="#">Fourth link</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#">Fifth link</a></li>
+                                    <li><a href="#">Sixth link</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#">Other link</a></li>
+                                    <li><a href="#">Last link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4 mt-lg-0">
+                        Style rani kano nay bahala
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container">
+                <div class="row align-items-center flex-row-reverse">
+                    <div class="col-auto ml-lg-auto">
+                    </div>
+                    <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                        Copyright © 2021 <a href=".">By John B.</a>. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
