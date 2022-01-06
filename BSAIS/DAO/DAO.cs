@@ -54,6 +54,23 @@ public class DAO
                                      subjects as subs ON en.SubjectId = subs.SubjectId " + idnum + "").ToList();
         return data;
     }
+    public List<StudentList> StudentList(string id) 
+    {
+        var data = cont.studentLists.FromSqlRaw(@"SELECT
+                                              courses.CourseId, 
+                                              courses.CourseName, 
+                                              student_info.StudentId, 
+                                              student_info.Firstname, 
+                                              student_info.Midname, 
+                                              student_info.Lastname, 
+                                              student_info.Sex, 
+                                              student_info.pword,
+                                              student_info.StudentAddress
+                                              FROM            
+                                              student_info INNER JOIN
+                                              courses ON student_info.course = courses.CourseId where student_info.StudentId = '" + id + "'").ToList();
+        return data;
+    }
 
     public List<GetStudents> GetStudents()
     {
@@ -148,7 +165,7 @@ public class DAO
     }
     public List<Subjects> StairwayToCoursesx(string values)
     {
-        var xData = cont.Subs.FromSqlRaw(@"SELECT     
+        var xData = cont.Subs.FromSqlRaw(@"SELECT
                                                 courses.CourseId, 
                                                 courses.CourseName, 
                                                 subjects.SubjectId, 

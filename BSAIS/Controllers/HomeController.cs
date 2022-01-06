@@ -20,20 +20,14 @@ namespace BSAIS.Controllers
         }
 
         [HttpPost("[action]"), Route("/Login")]
-        public IActionResult Login([FromForm] Logins xlogins) //students feature to add subject of their own
+        public IActionResult Login([FromForm] Logins xlogins) 
         {
             var data = dao.login(xlogins);
 
             if (data == "login")
             {
-                var spartans = new Tuple<List<AllStudents>, List<Subjects>>(dao.GetAllStudentx("where en.StudentId = " + xlogins.Id), dao.GetSubs());
+                var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(xlogins.Id), dao.GetAllStudentx("where en.StudentId = " + xlogins.Id), dao.GetSubs()); //AddStudents student info in tuple
 
-                //var datax = dao.GetAllStudentx("where en.StudentId = " + xlogins.Id
-
-                if (spartans.Item1.Count() == 0)
-                {
-                    return RedirectToAction("ErrorTab");
-                }
                 return View("Dashboard", spartans);
             }
             else if (data == "Admin")
@@ -70,7 +64,7 @@ namespace BSAIS.Controllers
             return RedirectToAction("SignUp");
         }
 
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(Logins xlogins)
         {
             return View();
         }
@@ -145,7 +139,7 @@ namespace BSAIS.Controllers
         {
             dao.SubjectToStudents(allStudents);
 
-            var spartans = new Tuple<List<AllStudents>, List<Subjects>>(dao.GetAllStudentx("where en.StudentId = " + allStudents.StudentId), dao.GetSubs());
+            var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(allStudents.StudentId), dao.GetAllStudentx("where en.StudentId = " + allStudents.StudentId), dao.GetSubs());
 
             return View("Dashboard", spartans);
 

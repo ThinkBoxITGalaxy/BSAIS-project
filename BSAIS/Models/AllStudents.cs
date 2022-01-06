@@ -24,8 +24,8 @@ namespace BSAIS.Models
         [Column("Lastname")]
         public string? Lastname { get; set; }
 
-        [Column("DateEnrolled")]
-        public DateTime? DateEnrolled { get; set; }
+        //[Column("DateEnrolled")]
+        //public DateTime? DateEnrolled { get; set; }
 
         [Column("SchoolYear")]
         public int? SchoolYear { get; set; }
@@ -48,8 +48,8 @@ namespace BSAIS.Models
         [Column("Final")]
         public decimal Final { get; set; }
 
-        [Column("Credits")]
-        public decimal? Credits { get; set; }
+        //[Column("Credits")]
+        //public decimal? Credits { get; set; }
 
         [Column("StudentAddress")]
         public string? StudentAddress { get; set; }

@@ -12,4 +12,5 @@ public class xCont : DbContext
     public DbSet<GetStudents> getStudents { get; set; }
     public DbSet<StairwayToCourses> Stairways { get; set; }
     public DbSet<Subjects> Subs { get; set; }
+    public DbSet<StudentList> studentLists { get; set; }
 }
