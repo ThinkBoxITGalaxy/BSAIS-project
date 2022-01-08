@@ -83,13 +83,20 @@ namespace BSAIS.Controllers
         [HttpPost("[action]"), Route("/Profile")]
         public IActionResult Profile([FromForm] AllStudents students)
         {
-            var datax = dao.GetAllStudentx("where en.StudentId = " + students.StudentId);
-            if (datax.Count() != 0)
+            try
             {
-                return View("Profile", datax);
+                var datax = dao.GetAllStudentx("where en.StudentId = " + students.StudentId);
+                if (datax.Count() != 0)
+                {
+                    return View("Profile", datax);
+                }
+                else
+                    return View("ErrorTab");
             }
-            else
-                return View("ErrorTab");
+            catch
+            {
+                return View("Error");
+            }
         }
 
         [HttpPost("[action]"), Route("/ErrorTab")]
@@ -101,10 +108,16 @@ namespace BSAIS.Controllers
         [HttpPost("[action]"), Route("/StudentUpdate")]
         public IActionResult StudentUpdate([FromForm] AllStudents all)
         {
-            dao.StudUpdate(all);
-            var datax = dao.GetAllStudentx("where en.StudentId = " + all.StudentId);
-            //return Content(@"<script>window.close();</script>", "text/html");
-            return View("Profile", datax);
+            try
+            {
+                dao.StudUpdate(all);
+                var datax = dao.GetAllStudentx("where en.StudentId = " + all.StudentId);
+                //return Content(@"<script>window.close();</script>", "text/html");
+                return View("Profile", datax);
+            }
+            catch {
+                return View("Error");
+            }
         }
 
         [HttpPost("[action]"), Route("/NotOnPressSearch")]
@@ -134,14 +147,13 @@ namespace BSAIS.Controllers
             dao.AddCourses(courses);
             return RedirectToAction("SubjectCourses");
         }
-        [HttpGet("[action]"), Route("/SubjectToStudent")] 
+        [HttpGet("[action]"), Route("/SubjectToStudent")]
         public IActionResult SubjectToStudent(AllStudents allStudents)
         {
             dao.SubjectToStudents(allStudents);
             try
             {
                 var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(allStudents.StudentId), dao.GetAllStudentx("where en.StudentId = " + allStudents.StudentId), dao.GetSubs());
-
                 return View("Dashboard", spartans);
             }
             catch
@@ -175,6 +187,20 @@ namespace BSAIS.Controllers
         {
             dao.AddSubs(sub);
             return RedirectToAction("SubjectCourses");
+        }
+        [HttpPost("[action]"), Route("/EditProfile")]
+        public IActionResult EditProfile(StudentDetails sd)
+        {
+            var data = dao.StudentList(sd.idnum);
+
+            return View(data);
+        }
+        [HttpPost("[action]"), Route("/UpdateProfile")]
+        public IActionResult UpdateProfile(StudentList sd)
+        {
+            dao.UpdateProfile(sd);
+            var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(sd.StudentId), dao.GetAllStudentx("where en.StudentId = " + sd.StudentId), dao.GetSubs());
+            return View("Dashboard", spartans);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

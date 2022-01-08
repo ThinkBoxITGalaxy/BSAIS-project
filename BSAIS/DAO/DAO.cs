@@ -54,7 +54,7 @@ public class DAO
                                      subjects as subs ON en.SubjectId = subs.SubjectId " + idnum + "").ToList();
         return data;
     }
-    public List<StudentList> StudentList(string id) 
+    public List<StudentList> StudentList(string id)
     {
         var data = cont.studentLists.FromSqlRaw(@"SELECT
                                               courses.CourseId, 
@@ -138,6 +138,12 @@ public class DAO
         string sql = $"Update Enrollment_master set Prelim = '{ all.Prelim }', Midterm = '{ all.Midterm }', Semi = '{ all.Semi }', Final = '{ all.Final }' where StudentId = '{ all.StudentId }' and SubjectId = '{ all.SubjectId }'";
         cont.Database.ExecuteSqlRaw(sql);
     }
+    public void UpdateProfile(StudentList sl)
+    {
+        string sql = $"Update student_info set Firstname = '{sl.Firstname}', Midname = '{sl.Midname}', Lastname = '{sl.Lastname}', StudentAddress = '{sl.StudentAddress}', pword = '{sl.pword}' where StudentId = '{sl.StudentId}'";
+        cont.Database.ExecuteSqlRaw(sql);
+    }
+
     public List<Courses> GetCourses()
     {
         var data = cont.coursesx.FromSqlRaw(@"select * from courses").ToList();
