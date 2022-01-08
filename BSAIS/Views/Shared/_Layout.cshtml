@@ -14,7 +14,6 @@
     <meta name="MobileOptimized" content="320">
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
-    <!-- Generated: 2018-04-06 16:27:42 +0200 -->
     <title> Philippine State College of Aeronautics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
@@ -24,22 +23,14 @@
             baseUrl: '.'
         });
     </script>
-    <!-- Dashboard Core -->
     <link href="./assets/css/dashboard.css" rel="stylesheet" />
     <script src="./assets/js/dashboard.js"></script>
-    <!-- c3.js Charts Plugin -->
     <link href="./assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
     <script src="./assets/plugins/charts-c3/plugin.js"></script>
-    <!-- Google Maps Plugin -->
     <link href="./assets/plugins/maps-google/plugin.css" rel="stylesheet" />
     <script src="./assets/plugins/maps-google/plugin.js"></script>
-    <!-- Input Mask Plugin -->
     <script src="./assets/plugins/input-mask/plugin.js"></script>
     <link rel="icon" href="./assets/images/browsers/philsca.svg">
-
-
-
-
 </head>
 <body class="">
     <div class="page">
@@ -50,7 +41,6 @@
                         <a class="header-brand" href="./index.html">
                             <img src="./assets/images/browsers/philsca.svg" class="header-brand-img"> Philippine State College of Aeronautics
                         </a>
-
                         <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                             <span class="header-toggler-icon"></span>
                         </a>
@@ -62,7 +52,6 @@
                     <div class="row align-items-center">
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-
                                 <li class="nav-item">
                                     <a asp-action="Novice" asp-controller="Home" class="nav-link"><i class="fe fe-users"></i> Students</a>
                                 </li>
@@ -75,53 +64,50 @@
                 </div>
             </div>
             @RenderBody()
-
             @await RenderSectionAsync("Scripts", required: false)
         </div>
     </div>
-
-
-   <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="https://www.philsca.edu.ph/">philsca.edu.ph</a></li>
-                                    <li><a href="https://data.gov.ph/">data.gov.ph</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="https://www.facebook.com/PhilscaOfficial/">Facebook</a></li>
-                                    <li><a href="https://en.wikipedia.org/wiki/Philippine_State_College_of_Aeronautics">Wikipedia</a></li>
-                                </ul>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <ul class="list-unstyled mb-0">
-                                    <li><a href="https://www.linkedin.com/school/philscaofficial/">LinkedIn</a></li>
-                                </ul>
-                            </div>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="https://www.philsca.edu.ph/">philsca.edu.ph</a></li>
+                                <li><a href="https://data.gov.ph/">data.gov.ph</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="https://www.facebook.com/PhilscaOfficial/">Facebook</a></li>
+                                <li><a href="https://en.wikipedia.org/wiki/Philippine_State_College_of_Aeronautics">Wikipedia</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="https://www.linkedin.com/school/philscaofficial/">LinkedIn</a></li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 mt-4 mt-lg-0">
-                        An Act Converting the Basa Air Base Community College into Philippine Air Force College of Aeronautics (PAFCA) signed 26 January 1977.
-                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    An Act Converting the Basa Air Base Community College into Philippine Air Force College of Aeronautics (PAFCA) signed 26 January 1977.
                 </div>
             </div>
         </div>
-         <footer class="footer">
-            <div class="container">
-                <div class="row align-items-center flex-row-reverse">
-                    <div class="col-auto ml-lg-auto">
-                    </div>
-                    <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-                        Copyright © 2022 <a href="."> Philippine State College of Aeronautics</a>. 
-                    </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-auto ml-lg-auto">
+                </div>
+                <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                    Copyright © 2022 <a href="."> Philippine State College of Aeronautics</a>.
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 </body>
 </html>
 

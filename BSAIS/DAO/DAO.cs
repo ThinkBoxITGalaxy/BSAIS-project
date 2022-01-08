@@ -71,7 +71,6 @@ public class DAO
                                               courses ON student_info.course = courses.CourseId where student_info.StudentId = '" + id + "'").ToList();
         return data;
     }
-
     public List<GetStudents> GetStudents()
     {
         var walkingZombies = cont.getStudents.FromSqlRaw(@"SELECT        
@@ -123,6 +122,11 @@ public class DAO
         }
         else
             return "0";
+    }
+    public void AddSubs(Subjects sub)
+    {
+        string sql = string.Format(@"Insert into subjects(SubjectId, [Description], Credits) values ('{0}', '{1}', '{2}')", sub.SubjectId, sub.Description, sub.Credits);
+        cont.Database.ExecuteSqlRaw(sql);
     }
     public void SubjectToStudents(AllStudents allStudents)
     {
@@ -183,5 +187,10 @@ public class DAO
     {
         var subs = cont.Subs.FromSqlRaw("Select * from subjects").ToList();
         return subs;
+    }
+    public void DeleteSubs(AllStudents allStudents)
+    {
+        string sql = $"Delete From Enrollment_master where StudentId = '{allStudents.StudentId}' and SubjectId = '{allStudents.SubjectId}'";
+        cont.Database.ExecuteSqlRaw(sql);
     }
 }

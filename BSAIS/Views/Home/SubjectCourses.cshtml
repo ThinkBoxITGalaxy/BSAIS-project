@@ -52,15 +52,20 @@
                     </br>
                     </br>
                  
-                     <form  asp-controller="Home" asp-action="CastCourses">
+                     <form  asp-controller="Home" asp-action="AddSubjects">
                          <div class="form-group">
                             <div class="input-icon">
-                                <input type="text" name="id" class="form-control" placeholder="Subject ID">
+                                <input type="text" name="SubjectId" class="form-control" placeholder="Subject ID">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="input-icon">
+                                <input type="number" name="Credits" class="form-control" placeholder="Number of Units">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" name="asdasdad" class="form-control" placeholder="Descriptive Title">
+                                <input type="text" name="Description" class="form-control" placeholder="Descriptive Title">
                                 <span class="input-group-append">
                                     <input class="btn btn-primary" type="submit">
                                 </span>
@@ -68,32 +73,7 @@
                         </div>
                           </form>
                 </div>
-               @* <form class="card">
-                    <div class="card-body">
-                        <div class="form-group">
-                            <div class="my-3 my-md-5">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Card title</h3>
-                                        <div class="card-options">
-                                            <a class="btn btn-secondary btn-sm">Action 1</a>
-                                            <a class="btn btn-secondary btn-sm ml-2">Action 2</a>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam deleniti fugit incidunt, iste, itaque minima neque pariatur perferendis sed suscipit velit vitae voluptatem. A consequuntur, deserunt eaque error nulla temporibus!
-                                    </div>
-                                    <div class="card-footer">
-                                        This is standard card footer
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-outline-primary"><i class="fe fe-plus mr-2"></i>Add</button>
-                    </div>
-                </form>*@
             </div>
-
             <div class="col-lg-8">
                 <form class="card" asp-controller="Home" asp-action="Profile" target="_blank">
                     <div class="card-body">
@@ -129,5 +109,4 @@
             </div>
         </div>
     </div>
-</div>
 </div>

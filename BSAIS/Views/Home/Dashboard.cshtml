@@ -47,7 +47,7 @@
                 <div class="container">
                     <div class="d-flex">
                         <a class="header-brand" href="./index.html">
-                              <img src="./assets/images/browsers/philsca.svg" class="header-brand-img"> Philippine State College of Aeronautics
+                            <img src="./assets/images/browsers/philsca.svg" class="header-brand-img"> Philippine State College of Aeronautics
                         </a>
                         <div class="d-flex order-lg-2 ml-auto">
                             <div class="dropdown d-none d-md-flex">
@@ -85,30 +85,35 @@
 
                 </div>
             </div>
-            <form asp-controller="Home" asp-action="SubjectToStudent">
+            <form>
                 <div class="my-3 my-md-5">
                     <div class="container">
                         @if (Model.Item1 != null)
                         {
                             StudentList students = Model.Item1[0];
                             <div class="page-header">
-                                <h1 class="page-title">@students.Firstname @students.Midname @students.Lastname</h1>
+                                <h1 class="page-title">
+                                    @students.Firstname @students.Midname @students.Lastname
+                                    <a class="icon" href="javascript:void(0)">
+                                        <i class="fe fe-edit"></i>
+                                    </a>
+                                </h1>
                             </div>
                             <div class="row">
                                 <div class="col-3">
-                                   <p class="tracking-wide">Home Address: @students.StudentAddress</p>
+                                    <p class="tracking-wide">Home Address: @students.StudentAddress</p>
                                     <p class="tracking-wide">Student ID: @students.StudentId</p>
-                                    @if(@students.Sex == "F")
+                                    @if (@students.Sex == "F")
                                     {
-                                     <p class="tracking-wide">Gender: Female</p>
+                                        <p class="tracking-wide">Gender: Female</p>
                                     }
                                     else
                                     {
-                                         <p class="tracking-wide">Gender: Male</p>
+                                        <p class="tracking-wide">Gender: Male</p>
                                     }
-                                   
+
                                 </div>
-                                <div class="col-9">
+                                <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <div class="row align-items-center mb-6">
@@ -131,6 +136,7 @@
                                                             <th class="text-center">Finals</th>
                                                             <th class="text-center">Overall</th>
                                                             <th class="text-center">Status</th>
+                                                            <th class="text-center">Action</th>
                                                         </tr>
                                                         @foreach (AllStudents all in Model.Item2)
                                                         {
@@ -145,6 +151,12 @@
                                                                     <td class="text-center">@string.Format("{0:#,#.##}", all.Final)</td>
                                                                     <td class="text-center">@string.Format("{0:#,#.##}", all.Rating)</td>
                                                                     <td class="text-center"><span class="tag tag-green">Passed</span></td>
+                                                                    <td class="text-center">
+                                                                        <button type="submit" class="btn btn-secondary btn-sm" asp-controller="Home" asp-action="DeleteSubjectV2" value=@all.SubjectId name="SubjectId">
+                                                                            <input type="hidden" name="StudentId" value="@all.StudentId">
+                                                                            <i class="fe fe-x"></i>
+                                                                        </button>
+                                                                    </td>
                                                                 </tr>
                                                             }
                                                             else if (all.Rating == 0)
@@ -158,6 +170,12 @@
                                                                     <td class="text-center">@string.Format("{0:#,#.##}", all.Final)</td>
                                                                     <td class="text-center">@string.Format("{0:#,#.##}", all.Rating)</td>
                                                                     <td class="text-center"><span class="tag tag-yellow">Pending</span></td>
+                                                                     <td class="text-center">
+                                                                        <button type="submit" class="btn btn-secondary btn-sm" asp-controller="Home" asp-action="DeleteSubjectV2" value=@all.SubjectId name="SubjectId">
+                                                                            <input type="hidden" name="StudentId" value="@all.StudentId">
+                                                                            <i class="fe fe-x"></i>
+                                                                        </button>
+                                                                    </td>
                                                                 </tr>
                                                             }
                                                             else
@@ -171,6 +189,12 @@
                                                                     <td class="text-center">@string.Format("{0:#,#.##}", all.Final)</td>
                                                                     <td class="text-center">@string.Format("{0:#,#.##}", all.Rating)</td>
                                                                     <td class="text-center"><span class="tag tag-pink">Failed</span></td>
+                                                                     <td class="text-center">
+                                                                       <button type="submit" class="btn btn-secondary btn-sm" asp-controller="Home" asp-action="DeleteSubjectV2" value=@all.SubjectId name="SubjectId">
+                                                                            <input type="hidden" name="StudentId" value="@all.StudentId">
+                                                                            <i class="fe fe-x"></i>
+                                                                        </button>
+                                                                    </td>
                                                                 </tr>
                                                             }
                                                         }
@@ -185,8 +209,8 @@
                                                 </select>
                                                 <br>
                                                 <br>
-                                                <input type="hidden" name="CourseId" value="@students.CourseId"></input>
-                                                <button name="StudentId" value=@students.StudentId type="submit" class="btn btn-success">Save changes</button>
+                                                <button asp-controller="Home" asp-action="SubjectToStudent" name="StudentId" value=@students.StudentId type="submit" class="btn btn-success">Save changes</button>
+                                                <input type="hidden" name="CourseId" value="@students.CourseId">
                                             </div>
                                         </div>
                                     </div>
@@ -233,7 +257,7 @@
                     <div class="col-auto ml-lg-auto">
                     </div>
                     <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-                        Copyright © 2022 <a href="."> Philippine State College of Aeronautics</a>. 
+                        Copyright © 2022 <a href="."> Philippine State College of Aeronautics</a>.
                     </div>
                 </div>
             </div>

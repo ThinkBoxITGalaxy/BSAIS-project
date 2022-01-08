@@ -26,7 +26,7 @@ namespace BSAIS.Controllers
 
             if (data == "login")
             {
-                var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(xlogins.Id), dao.GetAllStudentx("where en.StudentId = " + xlogins.Id), dao.GetSubs()); //AddStudents student info in tuple
+                var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(xlogins.Id), dao.GetAllStudentx("where en.StudentId = " + xlogins.Id), dao.GetSubs());
 
                 return View("Dashboard", spartans);
             }
@@ -38,7 +38,7 @@ namespace BSAIS.Controllers
             else
                 return RedirectToAction("Index");
         }
-
+      
         [HttpPost("[action]"), Route("/Novice")]
         public IActionResult Novice()
         {
@@ -134,15 +134,47 @@ namespace BSAIS.Controllers
             dao.AddCourses(courses);
             return RedirectToAction("SubjectCourses");
         }
-        [HttpPost("[action]"), Route("/SubjectToStudent")]
+        [HttpGet("[action]"), Route("/SubjectToStudent")] 
         public IActionResult SubjectToStudent(AllStudents allStudents)
         {
             dao.SubjectToStudents(allStudents);
+            try
+            {
+                var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(allStudents.StudentId), dao.GetAllStudentx("where en.StudentId = " + allStudents.StudentId), dao.GetSubs());
 
-            var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(allStudents.StudentId), dao.GetAllStudentx("where en.StudentId = " + allStudents.StudentId), dao.GetSubs());
+                return View("Dashboard", spartans);
+            }
+            catch
+            {
+                return View("Error");
+            }
+        }
 
+        [HttpPost("[action]"), Route("/DeleteSubject")]
+        public IActionResult DeleteSubject(AllStudents allStudents)
+        {
+            dao.DeleteSubs(allStudents);
+            var datax = dao.GetAllStudentx("where en.StudentId = " + allStudents.StudentId);
+            if (datax.Count() != 0)
+            {
+                return View("Profile", datax);
+            }
+            else
+                return View("ErrorTab");
+        }
+        [HttpPost("[action]"), Route("/DeleteSubjectV2")]
+        public IActionResult DeleteSubjectV2(AllStudents students)
+        {
+            dao.DeleteSubs(students);
+            var spartans = new Tuple<List<StudentList>, List<AllStudents>, List<Subjects>>(dao.StudentList(students.StudentId), dao.GetAllStudentx("where en.StudentId = " + students.StudentId), dao.GetSubs());
             return View("Dashboard", spartans);
+        }
 
+        [HttpPost("[action]"), Route("/AddSubjects")]
+        public IActionResult AddSubjects(Subjects sub)
+        {
+            dao.AddSubs(sub);
+            return RedirectToAction("SubjectCourses");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

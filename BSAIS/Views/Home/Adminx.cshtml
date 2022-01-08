@@ -1,82 +1,73 @@
 ﻿@model List<GetStudents>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-            <div class="my-3 my-md-5">
-                <div class="container">
-                    <div class="page-header">
-                        <h1 class="page-title">
-                            Students
-                        </h1>
-                    </div>
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="page-header">
 
-
-                    <div class="row row-cards row-deck">
-
-
-                        <div class="col-12">
-                            <div class="card">
-
-                                     <div class="card-header">
-                                        <div class="col-lg-3 ml-auto">
-                                            <form class="input-icon my-3 my-lg-0" asp-controller="Home" asp-action="LookThrough" >
-                                                  <div class="row gutters-xs">
-                                                        <div class="col">
-                                                            <input type="text" name="lname" class="form-control" placeholder="Search for lastname...">
-                                                        </div>
-                                                        <span class="col-auto">
-                                                            <button class="btn btn-secondary" type="submit"><i class="fe fe-search"></i></button>
-                                                        </span>
-                                                    </div>
-                                            </form>
-                                        </div>
-
+            <h1 class="page-title"><i class="fe fe-users"></i>  Students</h1>
+        </div>
+        <div class="row row-cards row-deck">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="col-lg-3 ml-auto">
+                            <form class="input-icon my-3 my-lg-0" asp-controller="Home" asp-action="LookThrough">
+                                <div class="row gutters-xs">
+                                    <div class="col">
+                                        <input type="text" name="lname" class="form-control" placeholder="Search for lastname...">
                                     </div>
-                                <form class="card" asp-controller="Home" asp-action="Profile" target="_blank">
-                                    
-                                    <div class="card-body">
-                                        <table class="table card-table table-vcenter text-nowrap">
-                                        </table>
-                                        <div class="highlight">
-                                            <div class="table-responsive" style="  overflow: visible;">
-                                                <table class="table card-table table-vcenter text-nowrap">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="w-1">ID No.</th>
-                                                            <th>Course</th>  
-                                                            <th>First Name</th>
-                                                            <th>Middle Name</th>
-                                                            <th>Family Name</th>
-                                                            <th>Gender</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach (var studentList in Model)
-                                                        {
-                                                            <tr>
-                                                                <td><span class="text-muted">@studentList.id</span></td>
-                                                                <td>@studentList.coursename</td>
-                                                                <td>@studentList.fname</td>
-                                                                <td>@studentList.midname</td>
-                                                                <td>@studentList.lname</td>
-                                                                <td>@studentList.gender</td>
-                                                                <td class="text-right">
-                                                                    <button type="submit" name="StudentId" value=@studentList.id class="btn btn-outline-success">Edit</button>
-                                                                </td>
-                                                                <td>
-                                                                </td>
-                                                            </tr>
-                                                        }
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                                    <span class="col-auto">
+                                        <button class="btn btn-secondary" type="submit"><i class="fe fe-search"></i></button>
+                                    </span>
+                                </div>
+                            </form>
                         </div>
                     </div>
+                    <form class="card" asp-controller="Home" asp-action="Profile" target="_blank">
+                        <div class="card-body">
+                            <table class="table card-table table-vcenter text-nowrap">
+                            </table>
+                            <div class="highlight">
+                                <div class="table-responsive" style="  overflow: visible;">
+                                    <table class="table card-table table-vcenter text-nowrap">
+                                        <thead>
+                                            <tr>
+                                                <th class="w-1">ID No.</th>
+                                                <th>Course</th>
+                                                <th>First Name</th>
+                                                <th>Middle Name</th>
+                                                <th>Family Name</th>
+                                                <th>Gender</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var studentList in Model)
+                                            {
+                                                <tr>
+                                                    <td><span class="text-muted">@studentList.id</span></td>
+                                                    <td>@studentList.coursename</td>
+                                                    <td>@studentList.fname</td>
+                                                    <td>@studentList.midname</td>
+                                                    <td>@studentList.lname</td>
+                                                    <td>@studentList.gender</td>
+                                                    <td class="text-right">
+                                                        <button type="submit" name="StudentId" value=@studentList.id class="btn btn-outline-success">Edit</button>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
-      
+        </div>
+    </div>
+</div>

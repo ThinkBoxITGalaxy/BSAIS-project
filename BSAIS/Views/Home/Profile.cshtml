@@ -18,69 +18,58 @@
     <meta name="MobileOptimized" content="320">
     <link rel="icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
-    <!-- Generated: 2018-04-06 16:27:42 +0200 -->
-    <title>Invoice - tabler.github.io - a responsive, flat and full featured admin template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome .min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+    @if (Model != null)
+    {
+        AllStudents details = Model[0];
+        <title>Edit - @details.Lastname @details.Firstname</title>
+    }
     <script src="./assets/js/require.min.js"></script>
     <script>
         requirejs.config({
             baseUrl: '.'
         });
     </script>
-    <!-- Dashboard Core -->
     <link href="./assets/css/dashboard.css" rel="stylesheet" />
     <script src="./assets/js/dashboard.js"></script>
-    <!-- c3.js Charts Plugin -->
     <link href="./assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
     <script src="./assets/plugins/charts-c3/plugin.js"></script>
-    <!-- Google Maps Plugin -->
     <link href="./assets/plugins/maps-google/plugin.css" rel="stylesheet" />
     <script src="./assets/plugins/maps-google/plugin.js"></script>
-    <!-- Input Mask Plugin -->
     <script src="./assets/plugins/input-mask/plugin.js"></script>
     <link rel="icon" href="./assets/images/browsers/philsca.svg">
 </head>
 <body class="">
     <div class="page">
-
         <div class="page-main">
             <div class="header py-4">
                 <div class="container">
                     <div class="d-flex">
                         <a class="header-brand" href="./index.html">
-                             <img src="./assets/images/browsers/philsca.svg" class="header-brand-img"> Philippine State College of Aeronautics
+                            <img src="./assets/images/browsers/philsca.svg" class="header-brand-img"> Philippine State College of Aeronautics
                         </a>
-
                         <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                             <span class="header-toggler-icon"></span>
                         </a>
                     </div>
                 </div>
             </div>
-
             <div class="my-3 my-md-5">
                 <div class="container">
                     @if (Model != null)
                     {
                         AllStudents details = Model[0];
-
                         <div class="card">
                             <div class="card-header">
+                                <h4 class="page-title"><i class="fe fe-edit"></i>Edit Grades</h4>
                             </div>
                             <div class="card-body">
-
                                 <div class="row my-8">
                                     <div class="col-6">
-
                                         <p class="h3">@details.Lastname @details.Firstname @details.Midname</p>
-
                                         <address>
                                             @details.StudentId<br>
                                             @details.StudentAddress<br>
-                                            @*@details.DateEnrolled<br>*@
                                         </address>
-
                                     </div>
                                     <div class="col-6 text-right">
                                         <p class="h3">@details.CourseName</p>
@@ -89,12 +78,12 @@
                                             @details.SchoolYear<br>
                                         </address>
                                     </div>
-
                                 </div>
                                 <div class="table-responsive push">
                                     <table class="table card-table table-vcenter text-nowrap">
                                         <thead>
                                             <tr>
+                                                <th></th>
                                                 <th class="w-1">Subject ID.</th>
                                                 <th>Subject</th>
                                                 <th>Prelim</th>
@@ -105,11 +94,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             @foreach (var studentGrade in Model)
                                             {
                                                 <form asp-controller="Home" asp-action="StudentUpdate">
                                                 <tr>
+                                                    <td>
+                                                        @*<form asp-controller="Home" asp-action="DeleteSubject">*@
+                                                            <button asp-controller="Home" asp-action="DeleteSubject" type="submit" value="@studentGrade.SubjectId" name="SubjectId" class="btn btn-icon btn-primary btn-danger">
+                                                                <i class="fe fe-trash"></i>
+                                                                <input type="hidden" value="@details.StudentId" name="StudentId"></input>
+                                                            </button>
+                                                        @*</form>*@
+
+                                                    </td>
                                                     <td>
                                                         <input type="hidden" value="@details.StudentId" name="StudentId">
                                                         <span>@studentGrade.SubjectId</span>
@@ -130,7 +127,7 @@
                                                         <input value="@string.Format("{0:0.#}", studentGrade.Final)" type="number" name="Final" class="form-control">
                                                     </td>
                                                     <td>
-                                                        <button type="submit" value="@studentGrade.SubjectId" name="SubjectId" class="btn btn-primary">Save changes</button>
+                                                        <button type="submit" value="@studentGrade.SubjectId" name="SubjectId" class="btn btn-icon btn-primary"><i class="fe fe-edit-3"></i></button>
                                                     </td>
                                                 </tr>
                                                 </form>
@@ -180,7 +177,7 @@
                     <div class="col-auto ml-lg-auto">
                     </div>
                     <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
-                        Copyright © 2022 <a href="."> Philippine State College of Aeronautics</a>. 
+                        Copyright © 2022 <a href="."> Philippine State College of Aeronautics</a>.
                     </div>
                 </div>
             </div>
