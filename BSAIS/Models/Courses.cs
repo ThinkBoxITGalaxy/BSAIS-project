@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 public class Courses
 {
     [Column("CourseId")]
-    public string id { get; set; }
+    public string? id { get; set; }
 
     [Column("CourseName")]
-    public string coursename { get; set; }
+    public string? coursename { get; set; }
 }
