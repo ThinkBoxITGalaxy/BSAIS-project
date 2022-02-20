@@ -1,0 +1,24 @@
+
+{
+    "region" : "ap-southeast-1",
+    "configuration" : "Release",
+    "framework"     : "net6.0",
+    "self-contained" : false,
+    "application"    : "BSAIS",
+    "environment"    : "Grading",
+    "app-path"       : "/",
+    "iis-website"    : "Default Web Site",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-02607466a7451e8f7,sg-066e82b9bdb4065c7\";\"aws:ec2:vpc,Subnets\"=\"subnet-020b3ff841290b869\";\"aws:ec2:vpc,ELBSubnets\"=\"subnet-020b3ff841290b869,subnet-074d96bdbb2318fa9,subnet-01ba73f42cbfc97a3\"",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.2.10 running .NET Core",
+    "environment-type"     : "LoadBalanced",
+    "loadbalancer-type"    : "application",
+    "cname"                : "grading",
+    "instance-type"        : "t2.micro",
+    "key-pair"             : "",
+    "health-check-url"     : "/",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "aws-elasticbeanstalk-service-role",
+    "proxy-server"         : "nginx"
+}
